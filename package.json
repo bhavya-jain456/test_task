@@ -1,0 +1,35 @@
+{
+  "name": "demoapplication",
+  "version": "1.0.0",
+  "description": "Test task",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server",
+    "test": "mocha --recursive --reporter list --timeout 30000"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Chicmic",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.537.0",
+    "axios": "^0.19.2",
+    "bcrypt": "^5.1.1",
+    "bluebird": "^3.5.3",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.16.4",
+    "express-joi-validator": "^2.0.0",
+    "fs-extra": "^9.0.1",
+    "handlebars": "^4.7.6",
+    "joi": "^17.1.1",
+    "joi-to-swagger": "^6.2.0",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.13.23",
+    "multer": "^1.4.2",
+    "nodemailer": "^6.9.16",
+    "swagger-ui-express": "^4.0.1"
+  }
+}
