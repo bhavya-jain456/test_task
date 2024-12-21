@@ -14,4 +14,8 @@ node_modules/
 swagger.json
 db-data
 package-lock.json
-public/uploads
+
+# Ignore all files in public/uploads folder
+public/uploads/*
+# But do not ignore the public/uploads folder itself
+!public/uploads/
