@@ -126,5 +126,17 @@ fileUploadService.deleteMultipleFilesFromLocal = async (payload, pathToDelete) =
     return Promise.all(promises);
 }
 
-console.log("__dirname", __dirname)
+(async function(){
+
+// Resolve the path to public/uploads
+const directoryPath = path.resolve(__dirname, '../../../public/uploads');
+console.log("directoryPath==========", directoryPath)
+// Ensure the parent directories are also created
+if (!fs.existsSync(directoryPath)) {
+    fs.mkdirSync(directoryPath, { recursive: true });  // Use 'recursive: true'
+    console.log('public/uploads folder created');
+} else {
+    console.log('public/uploads folder already exists');
+}
+})
 module.exports = fileUploadService;
