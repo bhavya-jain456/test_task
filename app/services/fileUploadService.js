@@ -33,9 +33,9 @@ fileUploadService.uploadFileToS3 = (payload, fileName, bucketName) => {
  * function to upload file to local server.
  */
 fileUploadService.uploadFileToLocal = async (payload) => {
-    const directoryPath = path.resolve(__dirname + `../../../public/uploads`);
+    const directoryPath = path.resolve(__dirname + `../../public/uploads`);
     const fileExtension = payload.file.originalname.split('.').pop().toLowerCase();
-
+console.log("UPLOAD DIRECTIRY PATH", directoryPath, __dirname)
     const fileName = `upload_${Date.now()}${payload.file.originalname}`;
     if (!fs.existsSync(directoryPath)) {
         fs.mkdirSync(directoryPath);
@@ -129,7 +129,7 @@ fileUploadService.deleteMultipleFilesFromLocal = async (payload, pathToDelete) =
 (async function(){
 
 // Resolve the path to public/uploads
-const directoryPath = path.resolve(__dirname, '../../../public/uploads');
+const directoryPath = path.resolve(__dirname, '../../public/uploads');
 console.log("directoryPath==========", directoryPath, __dirname)
 // Ensure the parent directories are also created
 if (!fs.existsSync(directoryPath)) {
