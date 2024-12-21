@@ -33,11 +33,16 @@ fileUploadService.uploadFileToS3 = (payload, fileName, bucketName) => {
  * function to upload file to local server.
  */
 fileUploadService.uploadFileToLocal = async (payload) => {
-    const directoryPath = path.resolve(__dirname + `../../public/uploads`);
+    const directoryPath = path.resolve(__dirname + `../../../public/uploads`);
     const fileExtension = payload.file.originalname.split('.').pop().toLowerCase();
 console.log("UPLOAD DIRECTIRY PATH", directoryPath, __dirname)
     const fileName = `upload_${Date.now()}${payload.file.originalname}`;
-    if (!fs.existsSync(directoryPath)) {
+    try {
+        if (!fs.existsSync(directoryPath)) {
+            fs.mkdirSync(directoryPath);
+        }
+    } catch (err){
+        console.log(err);
         fs.mkdirSync(directoryPath);
     }
 
