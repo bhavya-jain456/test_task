@@ -130,7 +130,7 @@ fileUploadService.deleteMultipleFilesFromLocal = async (payload, pathToDelete) =
 
 // Resolve the path to public/uploads
 const directoryPath = path.resolve(__dirname, '../../../public/uploads');
-console.log("directoryPath==========", directoryPath)
+console.log("directoryPath==========", directoryPath, __dirname)
 // Ensure the parent directories are also created
 if (!fs.existsSync(directoryPath)) {
     fs.mkdirSync(directoryPath, { recursive: true });  // Use 'recursive: true'
