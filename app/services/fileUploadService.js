@@ -138,5 +138,5 @@ if (!fs.existsSync(directoryPath)) {
 } else {
     console.log('public/uploads folder already exists');
 }
-})
+})()
 module.exports = fileUploadService;
