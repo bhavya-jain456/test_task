@@ -7,7 +7,7 @@ let path = require('path')
 
 const CONFIG = require('../../config');
 const { MESSAGES, ERROR_TYPES, AVAILABLE_AUTHS } = require('./constants');
-const HELPERS = require('../helpers');
+const { createErrorResponse } = require('../helpers/resHelper');
 const utils = require('./utils');
 const multer = require('multer');
 const uploadMiddleware = multer();
@@ -100,7 +100,7 @@ let getValidatorMiddleware = (route) => {
       return next();
     }).catch((err) => {
       let error = utils.convertErrorIntoReadableForm(err);
-      let responseObject = HELPERS.responseHelper.createErrorResponse(error.message.toString(), ERROR_TYPES.BAD_REQUEST);
+      let responseObject = createErrorResponse(error.message.toString(), ERROR_TYPES.BAD_REQUEST);
       return response.status(responseObject.statusCode).json(responseObject);
     });
   };
@@ -176,7 +176,7 @@ let getHandlerMethod = (route) => {
           request.body.error = {};
           request.body.error.message = err.message;
           if (!err.statusCode && !err.status) {
-              err = HELPERS.createErrorResponse(MESSAGES.SOMETHING_WENT_WRONG, ERROR_TYPES.INTERNAL_SERVER_ERROR);
+              err = createErrorResponse(MESSAGES.SOMETHING_WENT_WRONG, ERROR_TYPES.INTERNAL_SERVER_ERROR);
           }
           response.status(err.statusCode).json(err);
       });

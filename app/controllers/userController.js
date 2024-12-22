@@ -44,6 +44,8 @@ userController.loginUser = async (payload) => {
     if (compareHash(payload.password, user.password)) {
 
       let token = encryptJwt({ userId: user._id });
+      delete user.password;
+      delete user._id;
       await dbSerice.findOneAndUpdate(SessionModel, { userId: user._id }, { token }, { upsert: true });
       return createSuccessResponse(MESSAGES.LOGGED_IN_SUCCESSFULLY, { user, token });
     }
@@ -103,7 +105,7 @@ userController.createUserVideo = async (payload) => {
  * Function to list user video
  */
 userController.listUserVideos = async (payload) => {
-  let videos = await dbSerice.find(UserVideoModel, { userId: !payload.userId ? payload.user._id : payload.userId }, NORMAL_PROJECTION);
+  let videos = await dbSerice.find(UserVideoModel, { userId: !payload.userId ? payload.user._id : payload.userId });
   return createSuccessResponse(MESSAGES.USER_VIDEOS_LISTED_SUCCESSFULLY, videos); 
 }
 

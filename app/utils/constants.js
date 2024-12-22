@@ -12,7 +12,7 @@ CONSTANTS.SERVER = {
 CONSTANTS.PASSWORD_PATTERN_REGEX = /^(?=.{8,})(?=.*[a-z])(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$!%^&+=]).*$/;
 CONSTANTS.PHONE_REGEX=/^\+\d{1,3}\d{8,10}$/;
 
-CONSTANTS.NORMAL_PROJECTION = { __v: 0, createdAt: 0, updatedAt: 0, password: 0 };
+CONSTANTS.NORMAL_PROJECTION = { __v: 0, createdAt: 0, updatedAt: 0 };
 
 CONSTANTS.MESSAGES = require('./messages');
 
