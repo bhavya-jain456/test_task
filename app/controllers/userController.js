@@ -13,8 +13,8 @@ let userController = {};
 /**
  * function to get server response.
  */
-userController.getServerResponse = async (payload) => {
-  return createSuccessResponse(MESSAGES.SERVER_IS_WORKING_FINE);
+userController.getUserData = async (payload) => {
+  return createSuccessResponse(MESSAGES.SUCCESS, { user: payload.user });
 };
 
 /**
@@ -126,8 +126,7 @@ userController.listUsers = async (payload) => {
           _id: 0,
           title: 1,
           description: 1,
-          videoURL: 1,
-          thumbnail: 1
+          videoURL: 1
         }}
       ],
       as: 'userVideos'

@@ -8,13 +8,17 @@ const { PHONE_REGEX, MESSAGES } = require('../../utils/constants');
 let routes = [
 	{
 		method: 'GET',
-		path: '/v1/serverResponse/',
+		path: '/v1/user',
 		joiSchemaForSwagger: {
+			headers: {
+				'authorization': Joi.string().required().description('User \'s JWT token.')
+			},
 			group: 'User',
-			description: 'Route to get server response (Is server working fine or not?).',
-			model: 'SERVER'
+			description: 'Route to get user data.',
+			model: 'User_Data'
 		},
-		handler: userController.getServerResponse
+		auth: "User",
+		handler: userController.getUserData
 	},
 	{
 		method: 'POST',
@@ -111,8 +115,7 @@ let routes = [
 			body: {
 				title: Joi.string().required().description('Video title.'),
 				description: Joi.string().required().description('Video description.'),
-				videoURL: Joi.string().required().description('Video url.'),
-				thumbnail: Joi.string().required().description('Thumbnail url.'),
+				videoURL: Joi.string().required().description('Video url.')
 			},
 			group: 'Video',
 			description: 'Route to upload video.',
