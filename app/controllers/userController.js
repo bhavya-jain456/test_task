@@ -44,9 +44,9 @@ userController.loginUser = async (payload) => {
     if (compareHash(payload.password, user.password)) {
 
       let token = encryptJwt({ userId: user._id });
+      await dbSerice.findOneAndUpdate(SessionModel, { userId: user._id }, { token }, { upsert: true });
       delete user.password;
       delete user._id;
-      await dbSerice.findOneAndUpdate(SessionModel, { userId: user._id }, { token }, { upsert: true });
       return createSuccessResponse(MESSAGES.LOGGED_IN_SUCCESSFULLY, { user, token });
     }
     throw createErrorResponse(MESSAGES.INVALID_PASSWORD, ERROR_TYPES.BAD_REQUEST);
